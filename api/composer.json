@@ -1,0 +1,18 @@
+{
+    "name": "hossam/api",
+    "description": "This api for view plus website for CRUD Methods",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hossam hassan",
+            "email": "hossamhassan889@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        
+        "psr-4": {"Inc\\": "Inc/"}
+    }
+}
