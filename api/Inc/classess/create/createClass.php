@@ -2,13 +2,13 @@
 namespace Inc\classess\create;
 use Inc\interfacess\sendRequest;
 use Inc\connection\connect;
-
+header("Content-Type: application/json; charset=UTF-8");
 // header('Content-Type: application/json');
 class createClass implements sendRequest{
 
      private static $_instance; //The single instance
      private $request;
-     private $jsonDecode = "fff";
+     private $jsonDecode;
      private $pdo = null;
      private $data = null;
      private $json = null;
@@ -42,8 +42,8 @@ class createClass implements sendRequest{
 
     public function decodeJson(){
     //    json_decode($this->request);
-         $this->jsonDecode = json_encode($this->request );
-         echo  $this->jsonDecode;
+           $this->jsonDecode = json_decode($this->request );
+        
 
     }
 
@@ -51,16 +51,18 @@ class createClass implements sendRequest{
         
         // echo $this->jsonDecode;
       
-        $js = json_decode($this->request , JSON_PRETTY_PRINT);
+       
      
        
         
      // print_r($this->jsonDecode->name);
         $ar['callback'] = array();
 
-        $name = trim($this->jsonDecode->name);
+        $name = $this->jsonDecode->name;
        // print_r(  $this->jsonDecode);
+          
         $email = trim($this->jsonDecode->email); 
+       
         $phone = trim($this->jsonDecode->phone); 
         $country = trim($this->jsonDecode->country); 
         $area = trim($this->jsonDecode->area); 
@@ -71,7 +73,7 @@ class createClass implements sendRequest{
         $statment = $this->pdo->prepare($sql);
         $statment->execute([$name , $email , $phone , $country , $area , $password , $company , $numcompany ]);
 
-        $id =  self::$pdo->lastInsertId();
+        $id =  $this->pdo->lastInsertId();
 
         $product = trim($this->jsonDecode->product);  
      

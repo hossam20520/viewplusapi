@@ -2,7 +2,7 @@
 require_once("../vendor/autoload.php");
 use Inc\classess\create\createClass;
 
-header('Content-Type: application/json');
+header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -10,12 +10,12 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-// $post = file_get_contents('php://input');
+$post = file_get_contents('php://input');
 //  echo $post;
-$u = json_encode($post);
-$EN = json_decode($u  , TRUE);
+// $EN = json_decode($post);
 
-echo $EN->name;
+
+// echo $EN->name;
 //  echo json_decode($post);
  
 //  $postdatax = json_decode( ,TRUE);
@@ -27,13 +27,13 @@ echo $EN->name;
 // echo $namee;
 
 // echo $postdata;
-// $read = createClass::getInstanceApi();
-// $read->setConnection();
-// $read->sendRequestJson($postdata);
-// $read->decodeJson();
-// $read->create();
-// $read->encodeJson();
-// $read->response();
+$read = createClass::getInstanceApi();
+$read->setConnection();
+$read->sendRequestJson($post);
+$read->decodeJson();
+$read->create();
+$read->encodeJson();
+$read->response();
 
 
 ?>

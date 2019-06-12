@@ -35,15 +35,15 @@ class readClass implements sendRequest {
 
 
 
-    public function sendRequestJson($request){
-       $this->request = $request ;
+    public function sendRequestJson($requestt){
+       $this->request = $requestt ;
     }
 
 
 
     public function decodeJson(){
         $this->jsonDecode = json_decode($this->request);
-         
+         echo $this->jsonDecode->name;
       
     }
 
@@ -70,7 +70,7 @@ class readClass implements sendRequest {
      public function create(){ }
 
     public function encodeJson(){
-       $this->json = json_encode($this->data);
+    //    $this->json = json_encode($this->data);
 
     }
 

@@ -10,7 +10,7 @@ class connect{
 	private $_host = "127.0.0.1";
 	private $_username = "root";
 	private $_password = "hossam";
-    private $_database = "eva";
+    private $_database = "viewplus";
     private $charset = 'utf8';
     public static $_pdo;
    private $option = [
