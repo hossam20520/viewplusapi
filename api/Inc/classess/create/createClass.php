@@ -3,8 +3,8 @@ namespace Inc\classess\create;
 use Inc\interfacess\sendRequest;
 use Inc\connection\connect;
 header("Content-Type: application/json; charset=UTF-8");
-// header('Content-Type: application/json');
 class createClass implements sendRequest{
+    // view7823
 
      private static $_instance; //The single instance
      private $request;
@@ -12,7 +12,9 @@ class createClass implements sendRequest{
      private $pdo = null;
      private $data = null;
      private $json = null;
-     private function  __constructor(){ } 
+     private function  __constructor(){ 
+         
+     } 
 
 
      public function setConnection(){
@@ -31,12 +33,11 @@ class createClass implements sendRequest{
     }
 
 
-
+ 
     public function sendRequestJson($requestt){
+        
        $this->request = $requestt;
-      
-      
-    }
+   }
 
 
 
@@ -61,10 +62,9 @@ class createClass implements sendRequest{
         $sql = "INSERT INTO users (name , email , phone, country , area , password , company , numcompany ) values(?, ? , ? , ? , ? , ? , ? , ? )";
         $statment = $this->pdo->prepare($sql);
         $statment->execute([$name , $email , $phone , $country , $area , $password , $company , $numcompany ]);
-
         $id =  $this->pdo->lastInsertId();
 
-        $product = trim($this->jsonDecode->product);  
+     
      
         $ar['callback'] = array(
     "statues" => "success",
