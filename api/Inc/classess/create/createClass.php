@@ -41,28 +41,17 @@ class createClass implements sendRequest{
 
 
     public function decodeJson(){
-    //    json_decode($this->request);
+
            $this->jsonDecode = json_decode($this->request );
         
 
     }
 
     public function create(){
-        
-        // echo $this->jsonDecode;
-      
-       
-     
-       
-        
-     // print_r($this->jsonDecode->name);
-        $ar['callback'] = array();
 
+        $ar['callback'] = array();
         $name = $this->jsonDecode->name;
-       // print_r(  $this->jsonDecode);
-          
         $email = trim($this->jsonDecode->email); 
-       
         $phone = trim($this->jsonDecode->phone); 
         $country = trim($this->jsonDecode->country); 
         $area = trim($this->jsonDecode->area); 
@@ -103,9 +92,14 @@ class createClass implements sendRequest{
 
 }
 
+// ! This core of the api/methods/create
 
-
-
+// mazenbus201870381
+// MazenBus@2018Host
+// ipage.com
+// namecheap
+// user name:MedoMMM
+// pass:TurnOn@22
 
 
 

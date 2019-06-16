@@ -43,20 +43,28 @@ class readClass implements sendRequest {
 
     public function decodeJson(){
         $this->jsonDecode = json_decode($this->request);
-         echo $this->jsonDecode->name;
+     
       
     }
 
     public function read(){
         $ar['users'] = array();
-        $product = trim($this->jsonDecode->product);  
-        $data = $this->pdo->query("SELECT * FROM register")->fetchAll();
+        $email  = trim($this->jsonDecode->email);  
+        $password  = trim($this->jsonDecode->password);  
+        $data = $this->pdo->query("SELECT * FROM users where email='$email' and password ='$password' ")->fetchAll();
 
         foreach($data as $row):
 
             $items = array(
+                
                 'name' => $row['name'],
-                'email' => $row['email']
+                'email' => $row['email'],
+                'phone' =>  $row['phone'],
+                'country' => $row['country'],
+                'area' => $row['area'],
+                'company' => $row['company'],
+                'numcompany' => $row['numcompany']
+                
              );
 
 
@@ -70,7 +78,7 @@ class readClass implements sendRequest {
      public function create(){ }
 
     public function encodeJson(){
-    //    $this->json = json_encode($this->data);
+   $this->json = json_encode($this->data);
 
     }
 
