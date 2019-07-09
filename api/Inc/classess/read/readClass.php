@@ -50,13 +50,14 @@ class readClass implements sendRequest {
     public function read(){
         $ar['users'] = array();
         $email  = trim($this->jsonDecode->email);  
-        $password  = trim($this->jsonDecode->password);  
+        $passwords  = trim($this->jsonDecode->password); 
+        $password = base64_encode($passwords);
         $data = $this->pdo->query("SELECT * FROM users where email='$email' and password ='$password' ")->fetchAll();
 
         foreach($data as $row):
 
             $items = array(
-                
+                'id' => $row['id'],
                 'name' => $row['name'],
                 'email' => $row['email'],
                 'phone' =>  $row['phone'],

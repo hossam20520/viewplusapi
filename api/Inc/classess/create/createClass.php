@@ -3,8 +3,8 @@ namespace Inc\classess\create;
 use Inc\interfacess\sendRequest;
 use Inc\connection\connect;
 header("Content-Type: application/json; charset=UTF-8");
+// header('Content-Type: application/json');
 class createClass implements sendRequest{
-    // view7823
 
      private static $_instance; //The single instance
      private $request;
@@ -12,9 +12,8 @@ class createClass implements sendRequest{
      private $pdo = null;
      private $data = null;
      private $json = null;
-     private function  __constructor(){ 
-         
-     } 
+     private $statues;
+     private function  __constructor(){ } 
 
 
      public function setConnection(){
@@ -33,25 +32,36 @@ class createClass implements sendRequest{
     }
 
 
- 
+
     public function sendRequestJson($requestt){
-        
        $this->request = $requestt;
-   }
+      
+      
+    }
 
 
 
     public function decodeJson(){
-
+    //    json_decode($this->request);
            $this->jsonDecode = json_decode($this->request );
         
 
     }
 
     public function create(){
-
+        
+        // echo $this->jsonDecode;
+      
+       
+     
+       
+        
+     // print_r($this->jsonDecode->name);
         $ar['callback'] = array();
+
         $name = $this->jsonDecode->name;
+       // print_r(  $this->jsonDecode);
+          
         $email = trim($this->jsonDecode->email); 
         $phone = trim($this->jsonDecode->phone); 
         $country = trim($this->jsonDecode->country); 
@@ -59,15 +69,22 @@ class createClass implements sendRequest{
         $password = trim($this->jsonDecode->password);
         $company = trim($this->jsonDecode->company);
         $numcompany= trim($this->jsonDecode->numcompany);
-        $sql = "INSERT INTO users (name , email , phone, country , area , password , company , numcompany ) values(?, ? , ? , ? , ? , ? , ? , ? )";
+        $type = trim($this->jsonDecode->type);
+        $sql = "INSERT INTO users (name , email , phone, country , area , password , company , numcompany , type ) values(?, ? , ? , ? , ? , ? , ? , ? , ? )";
+        if(!empty($sql)):
+       $this->statues = "success";
+        else:
+         $this->statues = "fail";
+        endif;
         $statment = $this->pdo->prepare($sql);
-        $statment->execute([$name , $email , $phone , $country , $area , $password , $company , $numcompany ]);
+        $statment->execute([$name , $email , $phone , $country , $area , $password , $company , $numcompany ,  $type ]);
+
         $id =  $this->pdo->lastInsertId();
 
-     
+      //   $product = trim($this->jsonDecode->product);  
      
         $ar['callback'] = array(
-    "statues" => "success",
+    "statues" => $this->statues,
         "id"     =>  $id );
      
 
@@ -92,14 +109,9 @@ class createClass implements sendRequest{
 
 }
 
-// ! This core of the api/methods/create
 
-// mazenbus201870381
-// MazenBus@2018Host
-// ipage.com
-// namecheap
-// user name:MedoMMM
-// pass:TurnOn@22
+
+
 
 
 

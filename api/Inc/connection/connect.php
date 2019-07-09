@@ -9,8 +9,8 @@ class connect{
 	private static $_instance; //The single instance
 	private $_host = "127.0.0.1";
 	private $_username = "root";
-	private $_password = "hossam";
-    private $_database = "viewplus";
+	private $_password = "";
+    private $_database = "viewpluss";
     private $charset = 'utf8';
     public static $_pdo;
    private $option = [
